@@ -1,0 +1,5 @@
+The String class supports UTF-8 encoding. However, by default strings are treated as a sequence of bytes without regard to the encoding. There is a separate API for operating on Unicode characters, see for example LengthUTF8(), AtUTF8() and SubstringUTF8(). Urho3D itself needs to be aware of the Unicode characters only in the user interface, when displaying text and manipulating it through user input.
+
+On Windows, wide char strings are used in all calls to the operating system, such as accessing the command line, files, and the window title. The WString class is used as a helper for conversion. On Linux & Mac OS X 8-bit strings are used directly and they are assumed to contain UTF-8.
+
+Note that ScanDir() function may return filenames in unnormalized Unicode on Mac OS X. Unicode re-normalization is not yet implemented.
