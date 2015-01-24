@@ -1,18 +1,19 @@
 Resources include most things in Urho3D that are loaded from mass storage during initialization or runtime:
+在Urho3D中，资源是指可以在初始化或者运行过程中加载的对象，包括如下类型：
 
-Animation
-Image
-Model
-Material
-ParticleEffect
-ScriptFile
+Animation (动画)
+Image (图像)
+Model (模型)
+Material (材质)
+ParticleEffect (粒子特效)
+ScriptFile (脚本文件)
 Shader
-Sound
+Sound (声音)
 Technique
-Texture2D
-Texture3D
-TextureCube
-XMLFile
+Texture2D (2D纹理)
+Texture3D (3d纹理)
+TextureCube (立方纹理)
+XMLFile (XML文件)
 They are managed and loaded by the ResourceCache subsystem. Like with all other typed objects, resource types are identified by 32-bit type name hashes (C++) or type names (script). An object factory must be registered for each resource type.
 
 The resources themselves are identified by their file paths, relative to the registered resource directories or package files. By default, the engine registers the resource directories Data and CoreData, or the packages Data.pak and CoreData.pak if they exist.
