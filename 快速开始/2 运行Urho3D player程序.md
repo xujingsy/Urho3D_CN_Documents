@@ -24,15 +24,19 @@ Command line options The engine can be configured using the following command li
 
 
 -x Horizontal resolution
+
 -x 水平分辨率
 
 -y Vertical resolution
+
 -y 垂直分辨率
 
 -m Enable hardware multisampling
+
 -m 启用硬件多重采样
 
 -v Enable vertical sync
+
 -v 启用垂直同步
 
 -t Enable triple buffering 
@@ -40,89 +44,117 @@ Command line options The engine can be configured using the following command li
 -t 启用三重缓冲
 
 -w Start in windowed mode 
+
 -w 以窗口模式启动
 
 -s Enable resizing when in windowed mode 
+
 -s 启用在窗口模式可改变窗口大小
 
 -q Enable quiet mode which does not log to standard output stream 
+
 -q 启用安静模式, 不向标准输出流写日志
 
 -b Sound buffer length in milliseconds 
+
 -b 声音缓冲区长度(毫秒)
 
 -r Sound mixing frequency in Hz 
+
 -r 声音混合频率(Hz)
 
 -p Resource path(s) to use, separated by semicolons 
+
 -p 资源路径, 多个之间用分号分隔
 
 -ap Autoload resource path(s) to use, separated by semicolons 
+
 -ap 自动载入资源的路径, 多个之间用分号分隔
 
 -log Change the log level, valid 'level' values are 'debug', 'info', 'warning', 'error' 
+
 -log 改变日志级别, 合法的级别(level)值是 'debug', 'info', 'warning', 'error'.
 
 -ds Dump used shader variations to a file for precaching 
+
 -ds 转储shader变量到预先高速缓存文件
 
 -mq Material quality level, default 2 (high) 
+
 -mq 材质质量水平, 默认是2(high).
 
 -tq Texture quality level, default 2 (high) 
+
 -tq 纹理质量水平, 默认是2(high).
 
 -tf Texture filter mode, default 2 (trilinear) 
+
 -tf 纹理过滤模式, 默认是2(trilinear)
 
 -af Texture anisotropy level, default 4. Also sets anisotropic filter mode 
+
 -af 纹理各向异性水平, 默认是4. 也是各向异性过滤模式.
 
 -flushgpu Flush GPU command queue each frame. Effective only on Direct3D9 
+
 -flushgpu 每帧刷新GPU命令队列. 仅在Direct3D9有效.
 
 -borderless Borderless window mode 
+
 -borderless 无边框的窗口模式
 
 -headless Headless mode. No application window will be created 
+
 -headless 无头模式. 不创建应用程序窗口.
 
 -landscape Use landscape orientations (iOS only, default) 
+
 -landscape 使用景观方向(仅iOS, 默认值)
 
 -portrait Use portrait orientations (iOS only) 
+
 -portrait 使用纵向方向(仅iOS)
 
 -prepass Use light pre-pass rendering 
+
 -prepass 使用预渲染灯光
 
 
 -deferred Use deferred rendering 
+
 -deferred 使用延迟渲染
  
 
 -lqshadows Use low-quality (1-sample) shadow filtering 
+
 -lqshadows 使用低质量(1-sample)阴影过滤
 
 -noshadows Disable shadow rendering 
+
 -noshadows 禁用阴影渲染
 
 -nolimit Disable frame limiter 
+
 -nolimit 禁用帧数限制
 
 -nothreads Disable worker threads 
+
 -nothreads 禁用工作线程
 
 -nosound Disable sound output 
+
 -nosound 禁用声音输出
 
 -noip Disable sound mixing interpolation 
+
 -noip 禁用声音混合插值
 
 -sm2 Force SM2.0 rendering 
+
 -sm2 强制SM2.0渲染
 
 -touch Touch emulation on desktop platform 
+
 -touch 在桌面平台仿真触摸
 
 
