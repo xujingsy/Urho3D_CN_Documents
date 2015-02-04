@@ -174,12 +174,19 @@ To solve this permanently, we need to 'hack' the system a little bit to 'fool' X
 
 
 $ cd /System/Library/CoreServices/CoreTypes.bundle/Contents 
+
 $ plutil -convert xml1 Info.plist -o /tmp/Info.plist.xml 
+
 $ sed -i.bak "s/cxx<\/string>/cxx<\/string>\echo -e '\n\r'as<\/string>/g" /tmp/Info.plist.xml 
+
 $ sudo cp -p Info.plist{,.ori} 
+
 $ sudo plutil -convert binary1 /tmp/Info.plist.xml -o Info.plist 
+
 $ find /System/Library/Frameworks -type f -name lsregister -exec {} -kill -r -domain local -domain system -domain user -domain network \; 
+
 (上面是指令列表, 不做翻译)
+
 
 The last command resets the launch service database and rebuilds it, so the changes should take effect immediately when Xcode restarts.
 
