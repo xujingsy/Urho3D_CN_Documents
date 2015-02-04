@@ -170,7 +170,7 @@ The drawback of the above approach is, Xcode does not remember it. The steps nee
 
 To solve this permanently, we need to 'hack' the system a little bit to 'fool' Xcode to always treat .as file as one of the C++ source files. Execute the following commands in a terminal as normal user. These commands have been verified to work with Xcode 4.x on Lion and Xcode 5.x on Mountain Lion.
 
-要永久解决这个问题, 我们需要对这个系统弄一点”黑客”技术来”愚弄”Xcode,  让它将.as文件当作一个C++源文件处理.
+要永久解决这个问题, 我们需要对这个系统弄一点”黑客”技术来”愚弄”Xcode,让它将.as文件当作一个C++源文件处理.以普通用户在终端执行下面的命令. 这些命令在Lion的Xcode 4.x和Mountain Lion的Xcode 5.x 通过验证.
 
 
 $ cd /System/Library/CoreServices/CoreTypes.bundle/Contents 
