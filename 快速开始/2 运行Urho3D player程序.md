@@ -173,17 +173,17 @@ To solve this permanently, we need to 'hack' the system a little bit to 'fool' X
 要永久解决这个问题, 我们需要对这个系统弄一点”黑客”技术来”愚弄”Xcode,让它将.as文件当作一个C++源文件处理.以普通用户在终端执行下面的命令. 这些命令在Lion的Xcode 4.x和Mountain Lion的Xcode 5.x 通过验证.
 
 
-$ cd /System/Library/CoreServices/CoreTypes.bundle/Contents 
-
-$ plutil -convert xml1 Info.plist -o /tmp/Info.plist.xml 
-
-$ sed -i.bak "s/cxx<\/string>/cxx<\/string>\echo -e '\n\r'as<\/string>/g" /tmp/Info.plist.xml 
-
-$ sudo cp -p Info.plist{,.ori} 
-
-$ sudo plutil -convert binary1 /tmp/Info.plist.xml -o Info.plist 
-
-$ find /System/Library/Frameworks -type f -name lsregister -exec {} -kill -r -domain local -domain system -domain user -domain network \; 
+ $ cd /System/Library/CoreServices/CoreTypes.bundle/Contents 
+ 
+ $ plutil -convert xml1 Info.plist -o /tmp/Info.plist.xml 
+ 
+ $ sed -i.bak "s/cxx<\/string>/cxx<\/string>\echo -e '\n\r'as<\/string>/g" /tmp/Info.plist.xml 
+ 
+ $ sudo cp -p Info.plist{,.ori} 
+ 
+ $ sudo plutil -convert binary1 /tmp/Info.plist.xml -o Info.plist 
+ 
+ $ find /System/Library/Frameworks -type f -name lsregister -exec {} -kill -r -domain local -domain system -domain user -domain network \; 
 
 (上面是指令列表, 不做翻译)
 
