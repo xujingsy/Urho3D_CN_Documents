@@ -45,23 +45,29 @@ By using the LuaScriptInstance component, Lua script objects can be added to sce
 LuaScriptInstance* instance = node->CreateComponent<LuaScriptInstance>();
 instance->CreateObject("LuaScripts/Rotator.lua", "Rotator");
 ```
+
+在脚本对象实例化后，可以是用GetScriptObjectFunction()来得到对象的函数，使用上面讲述的方式调用。
 After instantiation, use GetScriptObjectFunction() to get the object's functions by name; calling happens like above.
 
+在脚本对象中可以定义一些函数，这些函数可以被LuaScriptInstance自动调用，例如初始化、 场景更新、保存加载等。下面列举出这些函数，这和AngelScript类似，更多详情可以参考AngelScript脚本。
 Like their AngelScript counterparts, script object classes can define functions which are automatically called by LuaScriptInstance for operations like initialization, scene update, or load/save. These functions are listed below. Refer to the AngelScript scripting page for details.
 
-Start()
-Stop()
-Update(timeStep)
-PostUpdate(timeStep)
-FixedUpdate(timeStep)
-FixedPostUpdate(timeStep)
-Save(serializer)
-Load(deserializer)
-WriteNetworkUpdate(serializer)
-ReadNetworkUpdate(deserializer)
-ApplyAttributes()
-TransformChanged()
-Event handling
+- Start()
+- Stop()
+- Update(timeStep)
+- PostUpdate(timeStep)
+- FixedUpdate(timeStep)
+- FixedPostUpdate(timeStep)
+- Save(serializer)
+- Load(deserializer)
+- WriteNetworkUpdate(serializer)
+- ReadNetworkUpdate(deserializer)
+- ApplyAttributes()
+- TransformChanged()
+
+## 事件处理
+
+## Event handling
 Like in AngelScript, both procedural and object event handling is supported. In procedural event handling the LuaScript subsystem acts as the event receiver on the C++ side, and forwards the event to a Lua function. Use SubscribeToEvent and give the event name and the function to use as the handler. Optionally a specific sender object can be given as the first argument instead. For example, subscribing to the application-wide Update event, and getting its timestep parameter in the event handler function.
 
 SubscribeToEvent("Update", "HandleUpdate")
