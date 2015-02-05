@@ -20,7 +20,7 @@ On Android and iOS the command line can not be entered, so it is instead read fr
 
 Command line options The engine can be configured using the following command line options.
 
-命令行参数. 引擎可配置使用下面的命令行参数.
+# 命令行参数. 引擎可配置使用下面的命令行参数.
 
 
 -x Horizontal resolution
