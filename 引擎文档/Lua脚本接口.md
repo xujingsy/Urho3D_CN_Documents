@@ -1,22 +1,50 @@
-Lua scripting
+# Lua scripting
+
+在 Urho3D 中 Lua脚本使用 LuaScript 子系统，要使用Lua脚本，必须先初始化LuaScript子系统。在默认的cmake构建选项中，Lua支持是默认不打开的，要启用Lua的支持，需要在cmake的命令中添加 -DURHO3D_LUA=1选项。更多详情，请参考构建选项。可以用下面的代码初始化LuaScript子系统：
+
+```
+context_->RegisterSubsystem(new LuaScript(context_));
+```
+
 Lua scripting in Urho3D has its dedicated LuaScript subsystem that must be instantiated before the scripting capabilities can be used. Lua support is not compiled in by default but must be enabled by the CMake build option -DURHO3D_LUA=1. For more details see Build options. Instantiating the subsystem is done like this:
 
+```
 context_->RegisterSubsystem(new LuaScript(context_));
+```
+
+Lua脚本支持立即编译并执行单行脚本代码，也可以加载一个脚本文件执行过程函数以及使用LuaScriptInstance组件来实例化脚本对象，这和AngelScript类似。
+
 Like AngelScript, Lua scripting supports immediate compiling and execution of single script lines, loading script files and executing procedural functions from them, and instantiating script objects to scene nodes using the LuaScriptInstance component.
 
-Immediate execution
+##　立即执行
+使用ExecuteString来编并执行Lua脚本，如果程序对性能有要求，不建议这么做。
+
+##　Immediate execution
 Use ExecuteString() to compile and run a line of Lua script. This should not be used for performance-critical operations.
 
-Script files and functions
+## 脚本文件和函数
+在Lua中，所有被加载的函数和变量都所用同一个Lua State，这意味着你可以在Lua脚本的任何地方访问已经加载的函数和变量。这一点和AngelScript是有所区别的（在AngelScript中，所有的函数和变量是不共享的，除非标记了共享）。通过调用ExecuteFile函数来执行脚本文件。
+
+## Script files and functions
 In contrast to AngelScript modules, which exist as separate entities and do not share functions or variables unless explicitly marked shared, in the Lua subsystem everything is loaded and executed in one Lua state, so scripts can naturally access everything loaded so far. To load and execute a Lua script file, call ExecuteFile().
 
+当脚本执行之后，可以用使用GetFunction()函数，指定函数的名称来得到某个函数，该函数返回一个LuaFunction对象，要调用该函数，先调用BeginCall()，然后使用PushXXX()传入参数，最后调用EndCall()来完成一次调用。
 After that, the functions in the script file are available for calling. Use GetFunction() to get a Lua function by name. This returns a LuaFunction object, on which you should call BeginCall() first, followed by pushing the function parameters if any, and finally execute the function with EndCall().
 
-Script objects
-By using the LuaScriptInstance component, Lua script objects can be added to scene nodes. After the component has been created, there are two ways to specify the object to instantiate: either specifying both the script file name and the object class name, in which case the script file is loaded and executed first, or specifying only the class name, in which case the Lua code containing the class definition must already have been executed. An example of creating a script object in C++ from the LuaIntegration sample, where a class called Rotator is instantiated from the script file Rotator.lua:
+## 脚本对象
+可以通过LuaScriptInstance组件，将一个Lua脚本对象添加到场景节点。在这个组件创建之后，有两种方式来实例化脚本对象：一是指定脚本文件名称和类名称（这种方式会先加载并执行脚本）另一种方式是仅仅使用类名称（这种情况下要确保类定义已经加载并执行过）。在LuaIntegration例子中展示了如何通过C++代码来实例化Rotator脚本对象，该脚本对象在Rotator.lua文件中定义。
 
+```
 LuaScriptInstance* instance = node->CreateComponent<LuaScriptInstance>();
 instance->CreateObject("LuaScripts/Rotator.lua", "Rotator");
+```
+## Script objects
+By using the LuaScriptInstance component, Lua script objects can be added to scene nodes. After the component has been created, there are two ways to specify the object to instantiate: either specifying both the script file name and the object class name, in which case the script file is loaded and executed first, or specifying only the class name, in which case the Lua code containing the class definition must already have been executed. An example of creating a script object in C++ from the LuaIntegration sample, where a class called Rotator is instantiated from the script file Rotator.lua:
+
+```
+LuaScriptInstance* instance = node->CreateComponent<LuaScriptInstance>();
+instance->CreateObject("LuaScripts/Rotator.lua", "Rotator");
+```
 After instantiation, use GetScriptObjectFunction() to get the object's functions by name; calling happens like above.
 
 Like their AngelScript counterparts, script object classes can define functions which are automatically called by LuaScriptInstance for operations like initialization, scene update, or load/save. These functions are listed below. Refer to the AngelScript scripting page for details.
